@@ -12,6 +12,8 @@ body {
 .container {
   text-align: center;
   position: relative;
+  max-width: 90%;
+  padding: 10px;
 }
 
 .envelope img {
@@ -31,6 +33,25 @@ body {
   width: 100%;
   height: 100%;
   pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.hearts div {
+  position: absolute;
+  animation: floatUp 3s ease-in forwards;
+  user-select: none;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-200px) scale(1.5);
+    opacity: 0;
+  }
 }
 
 .message {
@@ -41,6 +62,7 @@ body {
   margin-top: 20px;
   border-radius: 12px;
   min-height: 50px;
+  z-index: 1;
 }
 
 a#reply {
@@ -52,8 +74,27 @@ a#reply {
   text-decoration: none;
   border-radius: 20px;
   font-weight: bold;
+  z-index: 1;
+  position: relative;
 }
 
 .hidden {
   display: none;
+}
+
+/* Responsive Tweaks */
+@media (max-width: 600px) {
+  .envelope img {
+    width: 150px;
+  }
+
+  .message {
+    font-size: 1.2rem;
+    padding: 15px;
+  }
+
+  a#reply {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
 }
