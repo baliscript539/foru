@@ -9,14 +9,13 @@ function showHearts() {
   for (let i = 0; i < 20; i++) {
     const heart = document.createElement('div');
     heart.innerHTML = '❤️';
+    heart.style.position = 'absolute';
     heart.style.left = Math.random() * 100 + '%';
     heart.style.top = Math.random() * 100 + '%';
-    heart.style.fontSize = Math.floor(Math.random() * 20 + 20) + 'px';
-    heart.style.animation = 'floatUp 3s ease forwards';
+    heart.style.fontSize = Math.random() * 20 + 20 + 'px';
+    heart.style.animation = 'floatUp 2s ease forwards';
     container.appendChild(heart);
-
-    // Auto remove heart after animation
-    setTimeout(() => heart.remove(), 3000);
+    setTimeout(() => heart.remove(), 2000);
   }
 }
 
@@ -24,23 +23,20 @@ function showMessage() {
   const text = "Hai, Cintaku! ❤️\nAku cuma mau bilang satu hal penting... Kamu itu spesial banget! Dan aku bersyukur punya kamu di hidupku.";
   const messageBox = document.getElementById('message');
   const replyBtn = document.getElementById('reply');
-  
   messageBox.classList.remove('hidden');
-  replyBtn.classList.remove('hidden');
-  messageBox.innerHTML = ''; // Penting: reset sebelum mengetik
-  
+
   let i = 0;
 
   function typing() {
     if (i < text.length) {
-      // Ganti newline dengan <br>
-      if (text.charAt(i) === '\n') {
-        messageBox.innerHTML += '<br>';
-      } else {
-        messageBox.innerHTML += text.charAt(i);
-      }
+      messageBox.innerHTML += text.charAt(i);
       i++;
       setTimeout(typing, 60);
+    } else {
+      // Tampilkan tombol balasan setelah selesai ketik
+      setTimeout(() => {
+        replyBtn.classList.remove('hidden');
+      }, 300); // Tambahan efek dramatis 300ms
     }
   }
 
