@@ -12,8 +12,10 @@ body {
 .container {
   text-align: center;
   position: relative;
-  max-width: 90%;
-  padding: 10px;
+}
+
+.envelope {
+  animation: shake 1s infinite;
 }
 
 .envelope img {
@@ -26,6 +28,14 @@ body {
   transform: scale(1.05);
 }
 
+@keyframes shake {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(-5deg); }
+  50% { transform: rotate(5deg); }
+  75% { transform: rotate(-5deg); }
+  100% { transform: rotate(0deg); }
+}
+
 .hearts {
   position: absolute;
   top: 0;
@@ -33,39 +43,27 @@ body {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  overflow: hidden;
-  z-index: 0;
 }
 
-.hearts div {
-  position: absolute;
-  animation: floatUp 3s ease-in forwards;
-  user-select: none;
-}
-
-@keyframes floatUp {
-  0% {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-200px) scale(1.5);
-    opacity: 0;
-  }
+.output {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
 }
 
 .message {
   font-size: 1.5rem;
   color: white;
-  background: rgba(0,0,0,0.4);
+  background: rgba(0, 0, 0, 0.4);
   padding: 20px;
   margin-top: 20px;
   border-radius: 12px;
   min-height: 50px;
-  z-index: 1;
+  white-space: pre-wrap;
 }
 
-a#reply {
+#reply {
   display: inline-block;
   margin-top: 15px;
   background: red;
@@ -74,27 +72,8 @@ a#reply {
   text-decoration: none;
   border-radius: 20px;
   font-weight: bold;
-  z-index: 1;
-  position: relative;
 }
 
 .hidden {
   display: none;
-}
-
-/* Responsive Tweaks */
-@media (max-width: 600px) {
-  .envelope img {
-    width: 150px;
-  }
-
-  .message {
-    font-size: 1.2rem;
-    padding: 15px;
-  }
-
-  a#reply {
-    padding: 8px 16px;
-    font-size: 0.9rem;
-  }
 }
